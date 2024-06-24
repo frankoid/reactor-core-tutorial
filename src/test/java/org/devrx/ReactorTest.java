@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import reactor.core.publisher.Flux;
+import reactor.core.scheduler.Schedulers;
 
 @Slf4j
 public class ReactorTest {
@@ -23,7 +24,8 @@ public class ReactorTest {
         .map(i -> {
           log.debug("{}:{}", i, Thread.currentThread());
           return i * 2;
-        });
+        })
+        .subscribeOn(Schedulers.parallel());
     flux.subscribe(new Subscriber<>() {
       private Subscription s;
       long onNextAmount;
