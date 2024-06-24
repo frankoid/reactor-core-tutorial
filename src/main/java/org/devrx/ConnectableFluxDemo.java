@@ -1,5 +1,7 @@
 package org.devrx;
 
+import static java.time.Duration.ofSeconds;
+
 import reactor.core.publisher.ConnectableFlux;
 import reactor.core.publisher.Flux;
 
@@ -11,6 +13,7 @@ public class ConnectableFluxDemo {
             fluxSink.next(System.currentTimeMillis());
           }
         })
+        .sample(ofSeconds(2))
         .publish();
 
     publish.subscribe(System.out::println);
