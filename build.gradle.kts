@@ -1,6 +1,7 @@
 plugins {
     id("java")
     id("idea")
+    id("io.freefair.lombok") version "8.6"
 }
 
 group = "org.devrx"
